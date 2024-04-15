@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { DynamicFormComponent } from './dynamic-form.component';
 import { MainFormComponent } from './components/main-form/main-form.component';
 import { CommonModule } from '@angular/common';
@@ -59,5 +59,6 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
     NgxMatMomentModule,
   ],
   exports: [MainFormComponent],
+  schemas:[NO_ERRORS_SCHEMA]
 })
 export class DynamicFormModule {}

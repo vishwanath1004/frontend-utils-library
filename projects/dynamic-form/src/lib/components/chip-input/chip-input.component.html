@@ -1,11 +1,11 @@
-<mat-chip-list
+<mat-chip-listbox
   #chipList
   [multiple]="chipControl?.multiple"
   [required]="chipControl?.validators?.required"
   style="margin-top: 10px"
 >
   <div class="chip-options-list">
-    <mat-chip
+    <mat-chip-option
       *ngFor="let chip of chipControl?.options"
       [value]="chip.value"
       (click)="onChipClick(chip)"
@@ -19,7 +19,7 @@
       >
         cancel
       </mat-icon>
-    </mat-chip>
+    </mat-chip-option>
     <mat-chip
       *ngIf="chipControl?.meta?.showAddOption"
       (click)="addOption()"
@@ -33,4 +33,4 @@
     [(ngModel)]="enableSelectAll"
     (change)="toggleSelectAll()"
   ></mat-slide-toggle>
-</mat-chip-list>
+</mat-chip-listbox>

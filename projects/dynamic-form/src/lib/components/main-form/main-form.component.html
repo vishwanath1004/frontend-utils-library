@@ -103,13 +103,12 @@
         <mat-label>{{ control?.label }}</mat-label>
         <mat-slider
           style="width: 100%"
-          [formControlName]="control?.name"
-          [value]="control?.value"
           [min]="control?.min"
           [max]="control?.max"
           [step]="control?.step"
-          [thumbLabel]="control?.showThumbLabel"
+          [discrete]="control?.showThumbLabel"
         >
+        <input matSliderThumb [formControlName]="control?.name" [value]="control?.value">
         </mat-slider>
         <textarea matInput [formControlName]="control?.name" hidden></textarea>
       </mat-form-field>
