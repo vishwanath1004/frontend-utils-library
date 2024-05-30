@@ -71,9 +71,6 @@ export class RadioInputComponent implements OnInit, ControlValueAccessor {
     this.stateChanges.complete();
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    isDisabled ? this.radioControl.disable() : this.radioControl.enable();
-  }
 
   onRadioChange(event: any) {
     this.markAsTouched();

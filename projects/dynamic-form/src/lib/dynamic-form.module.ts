@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { DynamicFormComponent } from './dynamic-form.component';
 import { MainFormComponent } from './components/main-form/main-form.component';
 import { CommonModule } from '@angular/common';
@@ -21,11 +21,6 @@ import { RadioInputComponent } from './components/radio-input/radio-input.compon
 import { CheckboxInputComponent } from './components/checkbox-input/checkbox-input.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {
-  NgxMatDatetimePickerModule,
-  NgxMatTimepickerModule,
-} from '@angular-material-components/datetime-picker';
-import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 
 @NgModule({
   declarations: [
@@ -54,10 +49,8 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
     MatCheckboxModule,
     MatRadioModule,
     MatDatepickerModule,
-    NgxMatDatetimePickerModule,
-    NgxMatTimepickerModule,
-    NgxMatMomentModule,
   ],
   exports: [MainFormComponent],
+  schemas:[NO_ERRORS_SCHEMA]
 })
 export class DynamicFormModule {}
