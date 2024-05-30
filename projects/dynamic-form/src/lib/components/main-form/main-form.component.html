@@ -13,7 +13,6 @@
           [formControlName]="control?.name"
           [maxlength]="control?.validators.maxLength"
           [required]="control?.validators?.required"
-          style="margin-top: 10px"
         />
         <mat-icon
           matSuffix
@@ -33,7 +32,6 @@
           [placeholder]="control?.placeHolder"
           [maxlength]="control?.validators?.maxLength"
           [required]="control?.validators?.required"
-          style="margin-top: 10px"
         >
         </textarea>
       </mat-form-field>
@@ -64,39 +62,6 @@
           hidden
           [required]="control?.validators?.required"
         ></textarea>
-      </mat-form-field>
-
-      <mat-form-field
-        *ngIf="control.type === 'date'"
-        floatLabel="always"
-        appearance="fill"
-      >
-        <mat-label>{{ control?.label }}</mat-label>
-        <input
-          matInput
-          [ngxMatDatetimePicker]="picker"
-          [formControlName]="control.name"
-          [value]="control.value"
-          [min]="
-            control.name === dependedChild ? dependedChildDate : currentDate
-          "
-          [max]="maxDate"
-          (dateChange)="dateSelected($event, control)"
-          (click)="dateInputClick(control, picker)"
-        />
-        <mat-datepicker-toggle matSuffix [for]="$any(picker)">
-        </mat-datepicker-toggle>
-        <ngx-mat-datetime-picker
-          #picker
-          [showSpinners]="showSpinners"
-          [showSeconds]="showSeconds"
-          [stepHour]="stepHour"
-          [stepMinute]="stepMinute"
-          [stepSecond]="stepSecond"
-          [touchUi]="touchUi"
-          [enableMeridian]="enableMeridian"
-        >
-        </ngx-mat-datetime-picker>
       </mat-form-field>
 
       <mat-form-field *ngIf="control?.type === 'range'" floatLabel="always">
@@ -147,7 +112,7 @@
           [formControlName]="control?.name"
           [checked]="control?.value"
           [required]="control?.validators?.required"
-          style="margin-top: 10px"
+          color="primary"
         >
         </mat-slide-toggle>
         <textarea

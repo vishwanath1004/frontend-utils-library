@@ -2,11 +2,6 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
-import {
-  NGX_MAT_DATE_FORMATS,
-  NgxMatDateFormats,
-  NgxMatDatetimePicker,
-} from '@angular-material-components/datetime-picker';
 
 interface JsonFormValidators {
   min?: number;
@@ -58,28 +53,12 @@ export interface DynamicFormData {
   controls: JsonFormControls[];
 }
 
-const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
-  parse: {
-    dateInput: 'DD/MM/YYYY',
-  },
-  display: {
-    dateInput: 'LL LT',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMM YYYY',
-  },
-};
 
 @Component({
   selector: 'dynamic-form',
   templateUrl: './main-form.component.html',
   styleUrls: ['./main-form.component.css'],
-  providers: [
-    {
-      provide: NGX_MAT_DATE_FORMATS,
-      useValue: CUSTOM_DATE_FORMATS,
-    },
-  ],
+  providers: [],
 })
 export class MainFormComponent implements OnInit {
   @Input() formJson: any;
@@ -179,12 +158,6 @@ export class MainFormComponent implements OnInit {
       this.dependedParent = control.dependedParent;
       this.dependedParentDate = event.value;
     }
-  }
-
-  dateInputClick(control: any, datetimePicker: NgxMatDatetimePicker<any>) {
-    if (this.myForm.get(control.name)?.value)
-      datetimePicker._selected = this.myForm.get(control.name)?.value;
-    datetimePicker.open();
   }
 
   togglePasswordVisibility(control: any) {

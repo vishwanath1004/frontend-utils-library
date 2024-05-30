@@ -1,16 +1,17 @@
 export const sampleData = [
     {
         "name": "title",
-        "label": "Session title",
+        "label": "Enter your name",
         "value": "",
         "type": "text",
-        "placeHolder": "Ex. Name of your session",
+        "placeHolder": "Ex. John",
         "errorMessage": {
-            "required": "Enter session title here",
+            "required": "Enter your name",
             "minlength":"Min length should be 5",
         },
         "validators": {
-            "required": false,
+            "required": true,
+            "minLength": 10
         }
     },
     {
@@ -18,7 +19,7 @@ export const sampleData = [
         "label": "Description",
         "value":"",
         "type": "textarea",
-        "placeHolder": "Tell the community something about your session",
+        "placeHolder": "Tell the community something about yourself",
         "errorMessage": {
             "required": "Enter description"
         },
@@ -127,39 +128,9 @@ export const sampleData = [
         "multiple": true
     },
     {
-        "name": "start_date",
-        "label": "Start date",
-        "value":"",
-        "displayFormat": "dd/MM/yyyy hh:mm a",
-        "dependedChild": "end_date",
-        "type": "date",
-        "placeHolder": "YYYY-MM-DD hh:mm",
-        "errorMessage": {
-            "required": "Enter start date"
-        },
-        "validators": {
-            "required": false
-        }
-    },
-    {
-        "name": "end_date",
-        "label": "End date",
-        "value":"",
-        "displayFormat": "dd/MM/yyyy hh:mm a",
-        "dependedParent": "start_date",
-        "type": "date",
-        "placeHolder": "End date",
-        "errorMessage": {
-            "required": "Enter end date"
-        },
-        "validators": {
-            "required": false
-        }
-    },
-    {
         "name": "range_value",
-        "label": "Range Input",
-        "value":"",
+        "label": "Select difficulty level",
+        "value":"0",
         "type": "range",
         "min": "0",
         "max": "50",
@@ -175,7 +146,7 @@ export const sampleData = [
     },
     {
         "name": "rating",
-        "label": "Rating Option",
+        "label": "How do you rate this",
         "value":"",
         "type": "rating",
         "errorMessage": {
@@ -221,14 +192,6 @@ export const sampleData = [
             {
                 "label": "District education officer",
                 "value": "deo"
-            },
-            {
-                "label": "Head master",
-                "value": "hm"
-            },
-            {
-                "label": "Teacher",
-                "value": "te"
             }
         ]
     },
@@ -260,7 +223,7 @@ export const sampleData = [
     },
     {
         "name": "accept",
-        "label": "Toggle option",
+        "label": "Terms and conditions",
         "value": false,
         "type": "toggle",
         "errorMessage": {
@@ -269,19 +232,5 @@ export const sampleData = [
         "validators": {
             "required": false
         }
-    },
-    {
-        "name": "languages",
-        "label": "Dynamic language input",
-        "value": [],
-        "type": "dynamic",
-        "placeHolder": "Enter your language",
-        "errorMessage": {
-            "required": "Enter the language",
-        },
-        "validators": {
-            "required": false,
-            "minLength":3
-        }
-    },
+    }
 ]
