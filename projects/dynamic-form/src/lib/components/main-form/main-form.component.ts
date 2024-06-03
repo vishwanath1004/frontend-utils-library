@@ -1,7 +1,9 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
+import { LearningResourcesComponent } from '../learning-resources/learning-resources.component';
 
 interface JsonFormValidators {
   min?: number;
@@ -53,16 +55,17 @@ export interface DynamicFormData {
   controls: JsonFormControls[];
 }
 
-
 @Component({
   selector: 'dynamic-form',
   templateUrl: './main-form.component.html',
   styleUrls: ['./main-form.component.css'],
-  providers: [],
 })
 export class MainFormComponent implements OnInit {
   @Input() formJson: any;
+  @Input() classFlex: any ;
   myForm: FormGroup = this.fb.group({});
+  learningResources:any;
+  @ViewChild('learningResource') learningResource: MainFormComponent | undefined
 
   public showSpinners = true;
   public showSeconds = false;
@@ -84,7 +87,7 @@ export class MainFormComponent implements OnInit {
   dependedParentDate: any;
   @ViewChild('picker') picker: MatDatepicker<Date> | undefined;
 
-  constructor(private fb: FormBuilder) {}
+constructor(private fb: FormBuilder,public dialog: MatDialog,private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.createForm(this.formJson);
@@ -168,4 +171,35 @@ export class MainFormComponent implements OnInit {
   compareWith(value1: any, value2: any) {
     return JSON.stringify(value1.value) == JSON.stringify(value2);
   }
+
+  onClickAddResource(control:any){
+    let dialog = this.dialog.open(LearningResourcesComponent, {
+      data: {
+        control:control.dialogData
+      }
+
+    });
+    const componentInstance = dialog.componentInstance;
+    componentInstance.saveLearningResource.subscribe((result: any) => {
+      if (result) {
+        this.learningResources = result;
+          this.myForm.patchValue({
+            [control.name]:this.learningResources 
+          });
+      }
+    });
+  }
+  onlearningResourceChange(controlName: any,value:any) {
+    this.myForm.patchValue({
+      [controlName]:this.learningResource?.myForm.value
+    });
+  }
+
+  deleteResource(index:any,name:any){
+     this.learningResources.splice(index,1)
+     this.myForm.patchValue({
+      [name]:this.learningResources 
+    });
+  }
+
 }
