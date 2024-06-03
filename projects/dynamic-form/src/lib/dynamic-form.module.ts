@@ -21,6 +21,7 @@ import { RadioInputComponent } from './components/radio-input/radio-input.compon
 import { CheckboxInputComponent } from './components/checkbox-input/checkbox-input.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { LearningResourcesComponent } from './components/learning-resources/learning-resources.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     RadioInputComponent,
     CheckboxInputComponent,
     StarRatingComponent,
+    LearningResourcesComponent,
   ],
   imports: [
     CommonModule,
