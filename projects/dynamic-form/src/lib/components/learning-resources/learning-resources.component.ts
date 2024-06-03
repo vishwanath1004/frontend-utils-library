@@ -40,25 +40,8 @@ export class LearningResourcesComponent {
   
    onClickAddLearningResource(){
     this.addResource()
-    this.dialogData.control.resource.push([
-      {
-      "name": "nameOfResource",
-      "label": "Name of the resource",
-      "value": "",
-      "class": "",
-      "type": "text",
-      "placeHolder": "Name",
-      "position": "floating",
-  },{
-      "name": "linkToResource",
-      "label": "Link to the resource",
-      "value": "",
-      "class": "",
-      "type": "text",
-      "placeHolder": "Link",
-      "position": "floating",
-  }
-  ])
+    let data =  this.dialogData.control.resource[0]
+    this.dialogData.control.resource.push(data)
   
    }
   
