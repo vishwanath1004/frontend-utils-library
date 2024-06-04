@@ -4,26 +4,22 @@ import { ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 
 @Component({
-  selector: 'lib-learning-resources',
-  templateUrl: './learning-resources.component.html',
-  styleUrl: './learning-resources.component.css'
+  selector: 'lib-add-resource',
+  templateUrl: './add-resource.component.html',
+  styleUrl: './add-resource.component.css'
 })
-export class LearningResourcesComponent {
+export class AddResourceComponent {
   data: any;
   myGroup: FormGroup;
   @Output() saveLearningResource = new EventEmitter<any>();
   values:any = []
   
-  constructor(public dialogRef: MatDialogRef<LearningResourcesComponent>, @Inject(MAT_DIALOG_DATA) public dialogData: any, private cdr: ChangeDetectorRef) {
-    // dialogRef.disableClose = true;  
+  constructor(public dialogRef: MatDialogRef<AddResourceComponent>, @Inject(MAT_DIALOG_DATA) public dialogData: any, private cdr: ChangeDetectorRef) { 
     this.myGroup = new FormGroup({
       resources: new FormArray([])
     });
-  
     // Optionally, initialize with one resource
     this.addResource();
-  
-    
    }
   
    get resources() {
@@ -31,10 +27,11 @@ export class LearningResourcesComponent {
   }
   
   addResource() {
-    const resourceGroup = new FormGroup({
-      nameOfResource: new FormControl(''),
-      linkToResource: new FormControl('')
-    });
+    let formControls: { [key: string]: any } = {};
+    for(let control of this.dialogData.control.resource[0]){
+      formControls[control.name] = new FormControl('');
+    }
+    const resourceGroup = new FormGroup(formControls);
     this.resources.push(resourceGroup);
   }
   
@@ -50,18 +47,14 @@ export class LearningResourcesComponent {
    }
   
    getValues() {
-     this.resources.controls.map(control => {
-      const group = control as FormGroup;
-      if(group.get('nameOfResource')?.value &&  group.get('linkToResource')?.value){
-        this.values.push(
-          {
-            nameOfResource: group?.get('nameOfResource')?.value,
-            linkToResource: group?.get('linkToResource')?.value
-          }
-        );
-      }
-    });
-    return this.values;
+    if(this.myGroup.valid){
+      return this.myGroup?.value?.resources 
+    }
   }
-  
+
+ async  deleteAboveResource(){
+    await this.myGroup?.value?.resources.pop()
+    await this.dialogData.control.resource.pop()
+    this.cdr.detectChanges();
+  }
 }

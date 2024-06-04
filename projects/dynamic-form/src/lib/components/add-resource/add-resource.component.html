@@ -15,20 +15,20 @@
               [placeholder]="control?.placeHolder"
               [type]="control?.type"
               [formControlName]="control?.name"
+              [required]="control?.validators?.required"
             />
           </mat-form-field>
         </div>
       </div>
-      <div (click)="onClickAddLearningResource()">
-        <button mat-raised-button>
-          <mat-icon class="cursor-pointer text-blue-800">add_circle</mat-icon>
-          <p class="text-blue-800">Add learning resource</p>
-        </button>
+      <div  (click)="onClickAddLearningResource()">
+          <button [disabled]="myGroup.invalid" mat-raised-button>
+            <mat-icon class="cursor-pointer text-blue-800">add_circle</mat-icon>
+            <p class="text-blue-800"> {{dialogData.control?.addButton}}</p>
+          </button>
       </div>
     </main>
     <footer class="h-12 border-t flex items-center justify-between px-4">
       <button mat-raised-button [mat-dialog-close]="false">{{dialogData.control.cancelButton}}</button>
-      <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial (click)="confirmButton()">{{dialogData.control.confirmButton}}</button>
+      <button [disabled]="myGroup.invalid" mat-raised-button [mat-dialog-close]="true" cdkFocusInitial (click)="confirmButton()">{{dialogData.control.confirmButton}}</button>
     </footer>
   </div>
-  

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
-import { LearningResourcesComponent } from '../learning-resources/learning-resources.component';
+import { AddResourceComponent } from '../add-resource/add-resource.component';
 
 interface JsonFormValidators {
   min?: number;
@@ -173,7 +173,7 @@ constructor(private fb: FormBuilder,public dialog: MatDialog,private cdr: Change
   }
 
   onClickAddResource(control:any){
-    let dialog = this.dialog.open(LearningResourcesComponent, {
+    let dialog = this.dialog.open(AddResourceComponent, {
       data: {
         control:control.dialogData
       }
