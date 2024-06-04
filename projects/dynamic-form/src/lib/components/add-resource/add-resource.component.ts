@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
 
 @Component({
@@ -14,7 +13,7 @@ export class AddResourceComponent {
   @Output() saveLearningResource = new EventEmitter<any>();
   values:any = []
   
-  constructor(public dialogRef: MatDialogRef<AddResourceComponent>, @Inject(MAT_DIALOG_DATA) public dialogData: any, private cdr: ChangeDetectorRef) { 
+  constructor(public dialogRef: MatDialogRef<AddResourceComponent>, @Inject(MAT_DIALOG_DATA) public dialogData: any) { 
     this.myGroup = new FormGroup({
       resources: new FormArray([])
     });
@@ -35,7 +34,7 @@ export class AddResourceComponent {
     this.resources.push(resourceGroup);
   }
   
-   onClickAddLearningResource(){
+   onClickAddResource(){
     this.addResource()
     let data =  this.dialogData.control.resource[0]
     this.dialogData.control.resource.push(data)
@@ -52,9 +51,4 @@ export class AddResourceComponent {
     }
   }
 
- async  deleteAboveResource(){
-    await this.myGroup?.value?.resources.pop()
-    await this.dialogData.control.resource.pop()
-    this.cdr.detectChanges();
-  }
 }
