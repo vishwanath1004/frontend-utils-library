@@ -126,13 +126,13 @@
     <mat-form-field *ngIf="control?.type == 'multipleField'" floatLabel="always">
       <mat-label *ngIf="control.label">{{ control?.label }}</mat-label>
       <div>
-        <dynamic-form [formJson]="control.subfields" classFlex="flex-class" #learningResource  (change)="onlearningResourceChange(control?.name, $event)" ></dynamic-form>
+        <dynamic-form [formJson]="control.subfields" classFlex="flex-class" #form (change)="onMultipleField(control?.name, $event)" ></dynamic-form>
       </div>
       <textarea
         matInput
         [formControlName]="control?.name"
         hidden
-        [required]="control?.validators?.required || this.learningResource?.myForm?.invalid"
+        [required]="control?.validators?.required || this.form?.myForm?.invalid"
       ></textarea>
     </mat-form-field>
 
@@ -143,24 +143,12 @@
         <p class="text-blue-800">{{control?.textForLink}}</p>
       </div>
       <div class="flex flex-col gap-4">
-        <div  *ngFor="let learningResource of this.learningResources;let i = index" class="flex gap-4 bg-gray-200">
+        <div  *ngFor="let resource of this.resources;let i = index" class="flex gap-4 bg-gray-200">
           <mat-icon>videocam_off</mat-icon>
           <p>Video information</p>
           <mat-icon (click)="deleteResource(i,control?.name)" class="cursor-pointer">close</mat-icon>
         </div>
       </div>
-      <textarea
-        matInput
-        [formControlName]="control?.name"
-        hidden
-        [required]="control?.validators?.required"
-      ></textarea>
-    </mat-form-field>
-
-    
-    <mat-form-field *ngIf="control?.type == 'tasks'" floatLabel="always" appearance="fill" class="no-bottom-line">
-      <mat-label *ngIf="control.label">{{ control?.label }}</mat-label>
-      <lib-tasks></lib-tasks>
       <textarea
         matInput
         [formControlName]="control?.name"

@@ -64,7 +64,7 @@ export class MainFormComponent implements OnInit {
   @Input() formJson: any;
   @Input() classFlex: any ;
   myForm: FormGroup = this.fb.group({});
-  learningResources:any;
+  resources:any;
   @ViewChild('learningResource') learningResource: MainFormComponent | undefined
 
   public showSpinners = true;
@@ -182,23 +182,23 @@ constructor(private fb: FormBuilder,public dialog: MatDialog,private cdr: Change
     const componentInstance = dialog.componentInstance;
     componentInstance.saveLearningResource.subscribe((result: any) => {
       if (result) {
-        this.learningResources = result;
+        this.resources = result;
           this.myForm.patchValue({
-            [control.name]:this.learningResources 
+            [control.name]:this.resources 
           });
       }
     });
   }
-  onlearningResourceChange(controlName: any,value:any) {
+  onMultipleField(controlName: any,value:any) {
     this.myForm.patchValue({
-      [controlName]:this.learningResource?.myForm.value
+      [controlName]:this.resources?.myForm.value
     });
   }
 
   deleteResource(index:any,name:any){
-     this.learningResources.splice(index,1)
+     this.resources.splice(index,1)
      this.myForm.patchValue({
-      [name]:this.learningResources 
+      [name]:this.resources 
     });
   }
 
