@@ -144,8 +144,8 @@
       </div>
       <div class="flex flex-col gap-4">
         <div  *ngFor="let resource of this.resources;let i = index" class="flex gap-4 bg-gray-200">
-          <mat-icon>{{control.resultIcon}}</mat-icon>
-          <p>{{control.resultText}}</p>
+          <mat-icon>{{control.listIcon}}</mat-icon>
+          <p>{{control.listLabel}}</p>
           <mat-icon (click)="deleteResource(i,control?.name)" class="cursor-pointer">close</mat-icon>
         </div>
       </div>
