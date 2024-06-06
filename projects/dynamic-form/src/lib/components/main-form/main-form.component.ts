@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -87,7 +87,7 @@ export class MainFormComponent implements OnInit {
   dependedParentDate: any;
   @ViewChild('picker') picker: MatDatepicker<Date> | undefined;
 
-constructor(private fb: FormBuilder,public dialog: MatDialog,private cdr: ChangeDetectorRef) {}
+constructor(private fb: FormBuilder,public dialog: MatDialog) {}
 
   ngOnInit() {
     this.createForm(this.formJson);
