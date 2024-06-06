@@ -3,7 +3,6 @@ import { DynamicFormComponent } from './dynamic-form.component';
 import { MainFormComponent } from './components/main-form/main-form.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -38,7 +37,6 @@ import { AddResourceComponent } from './components/add-resource/add-resource.com
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
