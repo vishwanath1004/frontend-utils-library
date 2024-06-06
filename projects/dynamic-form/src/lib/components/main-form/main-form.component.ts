@@ -65,7 +65,7 @@ export class MainFormComponent implements OnInit {
   @Input() classFlex: any ;
   myForm: FormGroup = this.fb.group({});
   resources:any;
-  @ViewChild('learningResource') learningResource: MainFormComponent | undefined
+  @ViewChild('subform') subform: MainFormComponent | undefined
 
   public showSpinners = true;
   public showSeconds = false;
@@ -189,7 +189,7 @@ constructor(private fb: FormBuilder,public dialog: MatDialog,private cdr: Change
       }
     });
   }
-  onMultipleField(controlName: any,value:any) {
+  addFields(controlName: any,value:any) {
     this.myForm.patchValue({
       [controlName]:this.resources?.myForm.value
     });
