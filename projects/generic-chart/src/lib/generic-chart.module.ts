@@ -16,6 +16,6 @@ import { LineChartComponent } from './component/line-chart/line-chart.component'
     CommonModule,
   ],
   schemas:[NO_ERRORS_SCHEMA],
-  exports:[ChartComponent]
+  exports:[ChartComponent, LineChartComponent, BarChartComponent]
 })
 export class GenericChartModule {}

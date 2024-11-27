@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
@@ -8,7 +8,7 @@ Chart.register(...registerables);
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
 })
-export class BarChartComponent implements AfterViewInit {
+export class BarChartComponent implements AfterViewInit, OnDestroy {
   @Input() data: any;
   private chart: Chart | undefined;
 
@@ -18,6 +18,7 @@ export class BarChartComponent implements AfterViewInit {
     if (this.data) {
       this.initializeChart();
     }
+    window.addEventListener('resize', this.onResize.bind(this));
   }
 
   ngOnChanges() {
@@ -28,6 +29,10 @@ export class BarChartComponent implements AfterViewInit {
     if (this.data) {
       this.initializeChart();
     }
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.onResize.bind(this));
   }
 
   private initializeChart() {
@@ -47,6 +52,12 @@ export class BarChartComponent implements AfterViewInit {
         }
       });
       this.cdr.detectChanges();
+    }
+  }
+
+  private onResize() {
+    if (this.chart) {
+      this.chart.resize();
     }
   }
 }
