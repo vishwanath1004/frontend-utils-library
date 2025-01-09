@@ -63,6 +63,7 @@ export interface DynamicFormData {
 export class MainFormComponent implements OnInit {
   @Input() formJson: any;
   @Input() classFlex: any ;
+  @Input() language: any
   myForm: FormGroup = this.fb.group({});
   resources:any;
   @ViewChild('subform') subform: MainFormComponent | undefined
