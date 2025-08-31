@@ -1,19 +1,19 @@
-import { Component, Input, AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
-
-Chart.register(...registerables);
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Chart } from 'chart.js/auto';
 
 @Component({
-  selector: 'lib-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.css']
+  selector: 'lib-line-chart',
+  templateUrl: './line-chart.component.html',
+  styleUrls: ['./line-chart.component.css']
 })
-export class BarChartComponent implements AfterViewInit, OnDestroy {
-  @Input() data: any;
+export class LineChartComponent implements OnInit {
+  @Input() data: any; 
   private chart: Chart | undefined;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) { }
 
+  ngOnInit(): void {
+  }
   ngAfterViewInit() {
     if (this.data) {
       this.initializeChart();
@@ -31,15 +31,14 @@ export class BarChartComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    window.removeEventListener('resize', this.onResize.bind(this));
-  }
+  
 
   private initializeChart() {
-    const chartElement = document.getElementById('MyChart') as HTMLCanvasElement;
+    const chartElement = document.getElementById('MyLineChart') as HTMLCanvasElement;
+    if(this.chart){this.chart.destroy()}
     if (chartElement) {
       this.chart = new Chart(chartElement, {
-        type: 'bar',
+        type: 'line',
         data: this.data,
         options: {
           responsive: true,
@@ -60,4 +59,9 @@ export class BarChartComponent implements AfterViewInit, OnDestroy {
       this.chart.resize();
     }
   }
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.onResize.bind(this));
+  }
+
+
 }

@@ -1,14 +1,16 @@
-import { AfterViewInit } from '@angular/core';
-import { Component, Input } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Component, OnInit } from '@angular/core';
 
-Chart.register(...registerables);
 @Component({
-  selector: 'app-chart',
+  selector: 'lib-chart',
   templateUrl: './chart.component.html',
-  styleUrl: './chart.component.css'
+  styleUrls: ['./chart.component.css']
 })
-export class ChartComponent{
+export class ChartComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
   public data = {
     labels: [
       "January", "February", "March", "April", "May", 
@@ -32,8 +34,4 @@ export class ChartComponent{
       }
     ]
   };
-
- 
 }
-
-
